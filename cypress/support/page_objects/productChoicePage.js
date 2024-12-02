@@ -18,7 +18,7 @@ class ProductChoice {
         cy.get('.single_add_to_cart_button').click()
     }
 
-    secondProduct(productName, size, color, qtd) {
+    newProduct(productName, size, color, qtd) {
         cy.get("[placeholder='Enter your search ...']").eq(1).type(productName)
         cy.get('.button-search').eq(1).click()
         cy.get('.product_title').should('contain', productName)
@@ -28,7 +28,7 @@ class ProductChoice {
         cy.get('.single_add_to_cart_button').click({ force: true })
     }
 
-    newProduct(productName, size, color, qtd) {
+    plusProduct(productName, size, color, qtd) {
 
         cy.get('.product-block').eq(3).click()
         cy.get('.product_title').should('contain', productName)

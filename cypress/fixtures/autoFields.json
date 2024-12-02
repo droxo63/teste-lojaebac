@@ -1,0 +1,14 @@
+
+    
+    {
+        "firstName": "Diego",
+        "lastName": "Silva",
+        "companyName": "EBAC",
+        "countryName": "Brasil",
+        "billingAdress1": "Rua Exemplo",
+        "billingAdress2": "Apto 101",
+        "cityName": "São Paulo",
+        "billingState": "SP",
+        "zipCode": "12345-678",
+        "phoneNumber": "123456789"
+    }
