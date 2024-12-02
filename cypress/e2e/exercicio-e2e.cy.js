@@ -15,6 +15,10 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         productChoice.visitUrl(); // Chama o método visitUrl
     });
 
+    afterEach(() => {
+        cy.screenshot()
+    });
+
     it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta com massa de dados fixa', () => {
         productChoice.login();//faz o login
         cy.get('.page-title').should('contain', 'Minha conta')
@@ -51,42 +55,41 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
     })
 
     it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta usando massa de dados dinamica (fixtures)', () => {
-        productChoice.login();//faz o login
-        cy.get('.page-title').should('contain', 'Minha conta')
-        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, diego (não é diego? Sair)')
-
+    productChoice.login();//faz o login
+     cy.get('.page-title').should('contain', 'Minha conta')
+     cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, diego (não é diego? Sair)')
         cy.fixture('products').then(dados => {
             // rotina de escolher o primeiro produto
-        cy.get('#primary-menu > .menu-item-629 > a').click()
-        cy.get('.breadcrumb').should('contain', 'Produtos')
-        productChoice.newProduct(dados[0].nomeProduto, dados[0].tamanho, dados[0].cor, dados[0].quantidade)
-        cy.get('.woocommerce-message').should('contain', dados[0].nomeProduto)
+            cy.get('#primary-menu > .menu-item-629 > a').click()
+            cy.get('.breadcrumb').should('contain', 'Produtos')
+            productChoice.newProduct(dados[0].nomeProduto, dados[0].tamanho, dados[0].cor, dados[0].quantidade)
+            cy.get('.woocommerce-message').should('contain', dados[0].nomeProduto)
             // rotina de escolher o segundo produto
-        cy.get('#primary-menu > .menu-item-629 > a').click()
-        cy.get('.breadcrumb').should('contain', 'Produtos')
-        productChoice.newProduct(dados[1].nomeProduto, dados[1].tamanho, dados[1].cor, dados[1].quantidade)
-        cy.get('.woocommerce-message').should('contain', dados[1].nomeProduto)
+            cy.get('#primary-menu > .menu-item-629 > a').click()
+            cy.get('.breadcrumb').should('contain', 'Produtos')
+            productChoice.newProduct(dados[1].nomeProduto, dados[1].tamanho, dados[1].cor, dados[1].quantidade)
+            cy.get('.woocommerce-message').should('contain', dados[1].nomeProduto)
             // rotina de escolher o terceiro produto
-        cy.get('#primary-menu > .menu-item-629 > a').click()
-        cy.get('.breadcrumb').should('contain', 'Produtos')
-        productChoice.newProduct(dados[2].nomeProduto, dados[2].tamanho, dados[2].cor, dados[2].quantidade)
-        cy.get('.woocommerce-message').should('contain', dados[2].nomeProduto)
-             // rotina de escolher o ultimo produto
-        productChoice.lastProduct(dados[3].nomeProduto, dados[3].tamanho, dados[3].cor, dados[3].quantidade)
-        cy.get('.woocommerce-message').should('contain', dados[3].nomeProduto)
+            cy.get('#primary-menu > .menu-item-629 > a').click()
+            cy.get('.breadcrumb').should('contain', 'Produtos')
+            productChoice.newProduct(dados[2].nomeProduto, dados[2].tamanho, dados[2].cor, dados[2].quantidade)
+            cy.get('.woocommerce-message').should('contain', dados[2].nomeProduto)
+            // rotina de escolher o ultimo produto
+            productChoice.lastProduct(dados[3].nomeProduto, dados[3].tamanho, dados[3].cor, dados[3].quantidade)
+            cy.get('.woocommerce-message').should('contain', dados[3].nomeProduto)
         })
         //rotina ir para o carrinho e checkout
-        cy.get('.woocommerce-message > .button').click()
-        cy.get('h2').should('contain', 'Total no carrinho')
-        cy.get('.checkout-button').click()
-        cy.get('.breadcrumb > .active').should('contain', 'Checkout')
+            cy.get('.woocommerce-message > .button').click()
+            cy.get('h2').should('contain', 'Total no carrinho')
+            cy.get('.checkout-button').click()
+            cy.get('.breadcrumb > .active').should('contain', 'Checkout')
         //rotina de preencher o checkout e finalizar a compra
         cy.fixture('autoFields').then(autoFields => {
-        checkoutPage.checkoutForm(autoFields.firstName, autoFields.lastName, autoFields.companyName, autoFields.countryName, autoFields.billingAdress1, autoFields.billingAdress2, autoFields.cityName, autoFields.billingState, autoFields.zipCode, autoFields.phoneNumber)
-        cy.wait(5000)
-        cy.get(".woocommerce-notice--success").should("contain", 'Obrigado. Seu pedido foi recebido.')
+            checkoutPage.checkoutForm(autoFields.firstName, autoFields.lastName, autoFields.companyName, autoFields.countryName, autoFields.billingAdress1, autoFields.billingAdress2, autoFields.cityName, autoFields.billingState, autoFields.zipCode, autoFields.phoneNumber)
+            cy.wait(5000)
+            cy.get(".woocommerce-notice--success").should("contain", 'Obrigado. Seu pedido foi recebido.')
         })
-        
+
     })
 });
 
