@@ -15,9 +15,7 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         productChoice.visitUrl(); // Chama o método visitUrl
     });
 
-    afterEach(() => {
-        cy.screenshot()
-    });
+
 
     it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta com massa de dados fixa', () => {
         productChoice.login();//faz o login
@@ -26,8 +24,8 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         // rotina de escolher o primeiro produto
         cy.get('#primary-menu > .menu-item-629 > a').click()
         cy.get('.breadcrumb').should('contain', 'Produtos')
-        productChoice.firstProduct('XS', 'Yellow', 1)
-        cy.get('.woocommerce-message').should('contain', '“Aero Daily Fitness Tee” foi adicionado no seu carrinho.')
+        productChoice.firstProduct('XS', 'Green', 1)
+        cy.get('.woocommerce-message').should('contain', 'Abominable Hoodie” foi adicionado no seu carrinho.')
         // rotina de escolher o segundo produto
         cy.get('#primary-menu > .menu-item-629 > a').click()
         cy.get('.breadcrumb').should('contain', 'Produtos')

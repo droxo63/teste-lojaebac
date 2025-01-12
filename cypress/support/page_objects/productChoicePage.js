@@ -13,7 +13,7 @@ class ProductChoice {
 
         cy.get('.product-block').first().click()
         cy.get('.button-variable-item-' + size).click()
-        cy.get('.button-variable-item-' + color).click()
+        cy.get(`.button-variable-item-${color}`).click()
         cy.get('.input-text').clear().type(qtd)
         cy.get('.single_add_to_cart_button').click()
     }
@@ -23,14 +23,14 @@ class ProductChoice {
         cy.get('.button-search').eq(1).click()
         cy.get('.product_title').should('contain', productName)
         cy.get('.button-variable-item-' + size).click()
-        cy.get(".button-variable-item-" + color).click()
+        cy.get(`.button-variable-item-${color}`).click()
         cy.get('.input-text').clear().type(qtd)
         cy.get('.single_add_to_cart_button').click({ force: true })
     }
 
     plusProduct(productName, size, color, qtd) {
 
-        cy.get('.product-block').eq(3).click()
+        cy.get('.product-block').eq(4).click()
         cy.get('.product_title').should('contain', productName)
         cy.get('.button-variable-item-' + size).click()
         cy.get(`.button-variable-item-${color}`).click()
@@ -44,7 +44,7 @@ class ProductChoice {
         const urlFormatada = productName.replace(/ /g, '-')
         cy.visit(`products/${urlFormatada}`)
         cy.get('.button-variable-item-' + size).click()
-        cy.get('.button-variable-item-' + color).click()
+        cy.get(`.button-variable-item-${color}`).click()
         cy.get('.input-text').clear().type(qtd)
         cy.get('.single_add_to_cart_button').click()
     }

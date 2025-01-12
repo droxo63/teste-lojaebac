@@ -10,21 +10,21 @@
         "nomeProduto": "Chaz Kangeroo Hoodie",
         "tamanho": "L",
         "cor": "Black",
-        "quantidade": "5" 
+        "quantidade": 5 
     },
 
     {
         "nomeProduto": "Ajax Full-Zip Sweatshirt",
         "tamanho": "XL",
         "cor": "Red",
-        "quantidade": "7" 
+        "quantidade": 7
     },
     
     {
         "nomeProduto": "Troy Yoga Short",
         "tamanho": "32",
         "cor": "Green",
-        "quantidade": "2" 
+        "quantidade": 2
     }  
     
     
